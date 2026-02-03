@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiche Malienne - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-color: #f0f0f0;
+            --accent-gold: #FFD700;
+            --accent-purple: #9D00FF;
+            --accent-pink: #FF0055;
+            --nav-height: 60px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* --- UTILS --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, var(--accent-gold), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, var(--accent-gold), #ffa500);
+            color: #000;
+            font-weight: bold;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .btn:hover { transform: scale(1.05); }
+
+       :root {
+    --nav-height: 90px; /* On l'agrandit un peu pour que le logo respire */
+}
+
+.minimal-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(5, 5, 5, 0.8); /* Fond sombre semi-transparent */
+    backdrop-filter: blur(15px);    /* Effet de flou moderne */
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 2000;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1); /* Bordure dorée très fine */
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start; /* Aligné à gauche, ou change par 'center' pour centrer le logo */
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.main-logo {
+    height: 60px; /* Taille généreuse */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.2)); /* Léger éclat doré sous le logo */
+    transition: transform 0.3s ease;
+}
+
+.main-logo:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+/* On ajoute une marge au haut du site pour que le contenu ne soit pas caché sous le header */
+body {
+    padding-top: var(--nav-height);
+}
+
+
+        /* --- HERO SECTION --- */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative; /* Important pour les couches */
+    overflow: hidden;
+    padding-top: var(--nav-height);
+    background-color: #000; /* Fond de secours */
+}
+
+/* Couche 1 : La Photo (tout au fond) */
+.hero-bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('influenceurs.jpeg'); /* TA PHOTO ICI */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) grayscale(0.2); /* Rend la photo sombre et un peu sobre */
+    z-index: 1;
+}
+
+/* Couche 2 : La Lueur (par-dessus la photo) */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(34, 34, 34, 0.5) 0%, #000 100%);
+    z-index: 2;
+}
+
+/* Couche 3 : Le Contenu (au-dessus de tout) */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    font-weight: 900;
+}
+
+.hero-content span { color: var(--accent-gold); }
+
+.tagline {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.hero-description {
+    margin-bottom: 30px; 
+    max-width: 600px; 
+    margin-left:auto; 
+    margin-right:auto;
+    color: #ddd;
+}
+
+/* --- ANIMATIONS D'ENTRÉE --- */
+.animate-text, .animate-text-delay-1, .animate-text-delay-2, .animate-text-delay-3 {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-text-delay-1 { animation-delay: 0.3s; }
+.animate-text-delay-2 { animation-delay: 0.6s; }
+.animate-text-delay-3 { animation-delay: 0.9s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        /* --- INFLUENCERS / STATS --- */
+        #stats { padding: 50px 0; }
+
+        .influencer-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .influencer-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-pink);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .avatar-placeholder {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #333;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .stat-item h4 { font-size: 1.5rem; color: #fff; }
+        .stat-item p { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+
+        .audience-bar {
+            margin-top: 15px;
+            background: #333;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+        }
+        .bar-male { background: #4a90e2; height: 100%; }
+        .bar-female { background: #e24a8d; height: 100%; }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #151515;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+        
+        .service-card:hover { border-color: var(--accent-gold); transform: translateY(-5px); }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        /* --- PROCESS --- */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid #333;
+        }
+
+        .step {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .step-number {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        /* --- PRICING --- */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); }
+        .price-tag {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-weight: 900;
+            margin: 15px 0;
+        }
+        .engagement {
+            font-size: 0.8rem;
+            color: #ff4444;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .features-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+        }
+        .features-list li::before { content: '✓'; color: var(--accent-gold); margin-right: 10px; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (min-width: 768px) {
+            .stats-container { display: flex; gap: 20px; }
+            .influencer-card { flex: 1; }
+        }
+        .pricing-section-title {
+            color: var(--accent-gold);
+            margin: 20px 0 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--accent-gold);
+            transform: scale(1.02);
+            position: relative;
+        }
+        
+        .badge {
+            position: absolute;
+            top: -12px; right: 20px;
+            background: var(--accent-gold);
+            color: black;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 15px 0;
+        }
+
+        .price span { font-size: 1rem; font-weight: 400; color: #888; }
+
+        .features-list { text-align: left; margin: 20px 0; }
+        .features-list li { margin-bottom: 10px; color: #ccc; font-size: 0.9rem; }
+        .features-list li::before { content: '✔'; color: var(--accent-gold); margin-right: 10px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        .contact-email {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* --- RESPONSIVE DESKTOP OVERRIDES --- */
+        @media (min-width: 768px) {
+            .mobile-menu-btn { display: none; }
+            .nav-links {
+                position: static;
+                display: flex;
+                flex-direction: row;
+                background: transparent;
+                padding: 0;
+                width: auto;
+                border: none;
+            }
+            .nav-links li { margin: 0 20px; }
+            
+            .stats-container { display: flex; gap: 30px; }
+            .influencer-card { flex: 1; }
+            
+            .hero-content h1 { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="minimal-header">
+    <div class="header-content">
+        <a href="#" class="logo-wrapper">
+            <img src="logo.png" alt="Affiche Malienne" class="main-logo">
+        </a>
+    </div>
+</header>
+
+    <section id="hero">
+        <div class="hero-bg-image"></div> 
+        <div class="container hero-content">
+            <h1>AFFICHE<br><span>MALIENNE</span></h1>
+            <p class="tagline">Visibilité • Influence • Impact</p>
+            <p style="margin-bottom: 30px; max-width: 600px; margin-left:auto; margin-right:auto;">
+                Nous rendons votre marque visible, crédible et mémorable auprès de votre public. Avec rigueur, sens et passion.
+            </p>
+            <a href="#contact" class="btn">Booster ma marque</a>
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="container">
+            <h2 class="section-title">Nos Performances</h2>
+            <div class="stats-container">
+                
+                <div class="influencer-card">
+    <div class="profile-header">
+        <div class="avatar-placeholder">MB</div>
+        <div>
+            <h3>Tonton Mecbien</h3>
+            <small>@mr_diallo</small>
+        </div>
+    </div>
+    <div class="stat-grid">
+        <div class="stat-item">
+            <h4><span class="counter" data-target="72.6">0</span> K</h4>
+            <p>Followers</p>
+        </div>
+        <div class="stat-item">
+            <h4><span class="counter" data-target="974.4">0</span> K</h4>
+            <p>J'aime</p>
+        </div>
+    </div>
+    <div style="margin-top:15px; text-align:center;">
+        <h4 style="color:var(--accent-gold)"><span class="counter" data-target="9.5">0</span>M</h4>
+        <p style="font-size:0.8rem; color:#888;">Spectateurs Totaux</p>
+    </div>
+    <div style="margin-top:10px; font-size:0.8rem; display:flex; justify-content:space-between;">
+        <span>Homme 45%</span>
+        <span>Femme 54%</span>
+    </div>
+    <div class="audience-bar">
+        <div class="bar-male" style="width: 45%"></div>
+        <div class="bar-female" style="width: 54%"></div>
+    </div>
+</div>
+
+<div class="influencer-card" style="border-left: 4px solid var(--accent-gold);">
+    <div class="profile-header">
+        <div class="avatar-placeholder" style="border-color: #fff;">AB</div>
+        <div>
+            <h3>Abdra</h3>
+            <small>@abdra_cly</small>
+        </div>
+    </div>
+    <div class="stat-grid">
+        <div class="stat-item">
+            <h4><span class="counter" data-target="83.8">0</span> K</h4>
+            <p>Followers</p>
+        </div>
+       <div class="stat-item">
+    <h4><span class="counter" data-target="1.3">0</span> M</h4>
+    <p>J'aime</p>
+</div>
+    </div>
+    <div style="margin-top:15px; text-align:center;">
+        <h4 style="color:var(--accent-gold)"><span class="counter" data-target="9.6">0</span>M</h4>
+        <p style="font-size:0.8rem; color:#888;">Spectateurs Totaux</p>
+    </div>
+    <div style="margin-top:10px; font-size:0.8rem; display:flex; justify-content:space-between;">
+        <span>Homme 50%</span>
+        <span>Femme 49%</span>
+    </div>
+    <div class="audience-bar">
+        <div class="bar-male" style="width: 50%"></div>
+        <div class="bar-female" style="width: 49%"></div>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <section id="services" style="background: #111;">
+        <div class="container">
+            <h2 class="section-title">Nos Prestations</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <h3>Publicité Digitale</h3>
+                    <p style="font-size:0.9rem; color:#aaa; margin-top:10px;">Diffusion de campagnes sur nos comptes ou les vôtres.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Gestion de Comptes</h3>
+                    <p style="font-size:0.9rem; color:#aaa; margin-top:10px;">Publication, animation et interaction communautaire.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📸</div>
+                    <h3>Photo & Vidéo</h3>
+                    <p style="font-size:0.9rem; color:#aaa; margin-top:10px;">Production professionnelle pour valoriser vos produits.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>Formation</h3>
+                    <p style="font-size:0.9rem; color:#aaa; margin-top:10px;">Apprenez à créer du contenu efficace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="container">
+            <h2 class="section-title">Notre Méthode</h2>
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-number">Phase 1</div>
+                    <h3>Ciblage & Positionnement</h3>
+                    <p style="color:#aaa;">Définition de l'audience et positionnement de la marque.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">Phase 2</div>
+                    <h3>Stratégie & Planning</h3>
+                    <p style="color:#aaa;">Élaboration d'un plan de contenu aligné sur vos objectifs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">Phase 3</div>
+                    <h3>Création & Amplification</h3>
+                    <p style="color:#aaa;">Production de contenu impactant et diffusion virale.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">Phase 4</div>
+                    <h3>Engagement & Conversion</h3>
+                    <p style="color:#aaa;">Stimulation des interactions pour transformer l'audience en clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tarifs">
+        <div class="container">
+            <h2 class="section-title">Nos Tarifs</h2>
+
+            <h3 class="pricing-section-title">Publicité Digitale</h3>
+            
+            <div class="price-card featured">
+                <div class="badge">RECOMMANDÉ</div>
+                <h3>Campagne Complète</h3>
+                <div class="price">75 000 <span>FCFA</span></div>
+                <p>Visibilité maximale sur nos réseaux</p>
+                <ul class="features-list">
+                    <li>3 Vidéos créées au total</li>
+                    <li>2 Vidéos publiées sur nos comptes officiels</li>
+                    <li>1 Vidéo pour votre compte client</li>
+                    <li>Déplacement sur le terrain inclus</li>
+                </ul>
+                <a href="#contact" class="btn">Choisir</a>
+            </div>
+
+            <div class="price-card">
+                <h3>Création Simple</h3>
+                <div class="price">35 000 <span>FCFA</span></div>
+                <p>1 Vidéo (Sans publication chez nous)</p>
+                <ul class="features-list">
+                    <li>Vidéo remise au client</li>
+                    <li>Utilisation libre</li>
+                    <li>Option 2 vidéos : 50 000 FCFA</li>
+                </ul>
+            </div>
+
+            <h3 style="text-align:center; color:var(--accent-purple); margin-bottom:20px;">Gestion de Comptes</h3>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div class="engagement">3 mois minimum</div>
+                    <h4>PACK STARTER</h4>
+                    <div class="price-tag">50 000 FCFA <small style="font-size: 0.6rem; color:#888;">/mois</small></div>
+                    <ul class="features-list">
+                        <li>Gestion d’un compte social</li>
+                        <li>1 moodboard + recommandations</li>
+                        <li>8 publications par mois</li>
+                        <li>Planification & Rapport mensuel</li>
+                    </ul>
+                </div>
+                <div class="price-card" style="border: 2px solid var(--accent-gold);">
+                    <div class="engagement">3 mois minimum</div>
+                    <h4>PACK PRO</h4>
+                    <div class="price-tag">120 000 FCFA <small style="font-size: 0.6rem; color:#888;">/mois</small></div>
+                    <ul class="features-list">
+                        <li>Gestion de 2 comptes sociaux</li>
+                        <li>Stratégie & Calendrier mensuel</li>
+                        <li>12 publications/mois (dont 1 Reel)</li>
+                        <li>Community Management (Messages/Com)</li>
+                        <li>Photos & Vidéos Pro (2 à 3 contenus)</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <div class="engagement">3 mois minimum</div>
+                    <h4>PACK PREMIUM</h4>
+                    <div class="price-tag">250 000 FCFA <small style="font-size: 0.6rem; color:#888;">/mois</small></div>
+                    <ul class="features-list">
+                        <li>Gestion multi‑comptes</li>
+                        <li>12 publications/mois + Reels</li>
+                        <li>Publicité avancée incluse</li>
+                        <li>Photos & Vidéos Pro illimitées</li>
+                        <li>Gestion complète des messages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+             <div class="price-card" style="border-color: var(--accent-pink);">
+                <h3 style="color:var(--accent-pink)">Formation Création</h3>
+                <p>Durée : 4 Semaines</p>
+                <div class="price-tag">50 000 FCFA </div>
+                <ul class="features-list">
+                    <li>2 Séances par semaine</li>
+                    <li>2h par séance</li>
+                    <li>Apprendre à créer du contenu viral</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Contactez-nous</h2>
+            <p>Prêt à booster votre présence digitale ?</p>
+            
+            <div style="margin: 30px 0;">
+                <a href="mailto:diallosadio348@gmail.com" class="contact-email">diallosadio348@gmail.com</a>
+                <p style="margin-top:10px; color:#888;">Bamako, Mali</p>
+            </div>
+
+            <a href="mailto:diallosadio348@gmail.com" class="btn">Envoyer un Email</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Affiche Malienne. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+   <script>
+    let started = false;
+
+    function startCounters() {
+        if (started) return;
+        const counters = document.querySelectorAll('.counter');
+        
+        counters.forEach(counter => {
+            // On force la lecture du nombre, même s'il y a une virgule
+            const target = parseFloat(counter.getAttribute('data-target').replace(',', '.'));
+            let current = 0;
+            const duration = 2000; // 2 secondes
+            const increment = target / (duration / 16);
+
+            const update = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.innerText = current.toFixed(1);
+                    requestAnimationFrame(update);
+                } else {
+                    counter.innerText = target.toString().replace('.', ',');
+                }
+            };
+            update();
+        });
+        started = true;
+    }
+
+    // Gestion du menu
+    function toggleMenu() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    // Lancement automatique
+    window.addEventListener('DOMContentLoaded', () => {
+        // On attend un tout petit peu que la page soit stable
+        setTimeout(startCounters, 500);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
